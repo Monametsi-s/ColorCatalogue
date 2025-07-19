@@ -1,16 +1,15 @@
 import { 
   Text, 
   View, 
-  TextInput, 
-  Button,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { useState } from "react";
+import TextInput1 from "./increase-num";
 
 
 export default function HomeScreen() {
-  const [num, setNum] = useState(0)
-  const [col, setCol] = useState("#437fbeff")
+
   const [isDarkMode, setIsDarkMode] = useState(false);
 
  function toggleTheme() {
@@ -18,14 +17,7 @@ export default function HomeScreen() {
     
   }
 
-  async function handlePress() {
-    setNum((currentNum) => currentNum + 1);
-    alert(`Number increased by one `);
-  }
-
-  function changeCol() {
-    setCol(col === "#437fbeff" ? "purple" : "#437fbeff");
-  }
+ 
 
   return (
     <View 
@@ -37,35 +29,14 @@ export default function HomeScreen() {
       }}
       >
 
-        {/* <TextInput
-        placeholder="Enter Name"  
-        value= {num.toString()} 
-        style={{
-          height: 40,
-          width: 200,
-          borderColor: "#aaa",
-          borderWidth: 1,
-          paddingHorizontal: 15,
-          borderRadius: 5,
-          backgroundColor: "#f0f0f0",
-        }}
-      /> */}
+        {/* <TextInput1/> */}
+        <FlatList
+        data = {[1, 2, 3, 4]}
+        renderItem = {({ item }) => (<Text>{item.toString()}</Text>)}
+        keyExtractor={(item,index) => index.toString()}
+        />
 
-        {/* <TouchableOpacity
-        onPress={handlePress}
-        onLongPress={changeCol}
-        style={{
-          marginTop: 20,
-          paddingVertical: 10,
-          paddingHorizontal: 20,
-          backgroundColor: col,
-          borderRadius: 5,
-        }}
-        >
-
-          <Text style={{ color: 'white', fontSize: 18 }}>Press me</Text>
-        </TouchableOpacity> */}
-
+        
         <TouchableOpacity
         onPress={toggleTheme}
         style={{
